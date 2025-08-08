@@ -5,202 +5,214 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>タイ年間カレンダー</title>
     <style>
+        * {
+            box-sizing: border-box;
+        }
+        
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             margin: 0;
-            padding: 20px;
-            background-color: #f5f5f5;
+            padding: 12px;
+            background-color: #ffffff;
+            color: #2d3748;
+            line-height: 1.4;
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
         }
         
         .header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 16px;
         }
         
         .year-title {
-            font-size: 32px;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 10px;
+            font-size: 20px;
+            font-weight: 600;
+            color: #1a202c;
+            margin-bottom: 8px;
         }
         
         .navigation {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin-bottom: 20px;
+            gap: 8px;
+            margin-bottom: 12px;
         }
         
         .nav-button {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 25px;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            color: #4a5568;
+            border: 1px solid #e2e8f0;
+            padding: 8px 16px;
+            border-radius: 20px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 12px;
             transition: all 0.3s ease;
+            font-weight: 500;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
         
         .nav-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            background: linear-gradient(135deg, #edf2f7 0%, #cbd5e0 100%);
+            border-color: #cbd5e0;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
         }
         
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            margin-top: 30px;
+            gap: 12px;
+            margin-top: 16px;
         }
         
-        @media (max-width: 1024px) {
+        @media (max-width: 900px) {
             .calendar-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
         }
         
-        @media (max-width: 768px) {
+        @media (max-width: 650px) {
             .calendar-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
         
-        @media (max-width: 480px) {
+        @media (max-width: 400px) {
             .calendar-grid {
                 grid-template-columns: 1fr;
             }
         }
         
         .month-container {
-            background: white;
-            border-radius: 15px;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
             overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-        
-        .month-container:hover {
-            transform: translateY(-5px);
         }
         
         .month-header {
-            padding: 15px;
+            padding: 8px 12px;
             text-align: center;
-            font-weight: bold;
-            font-size: 18px;
-            color: white;
+            font-weight: 600;
+            font-size: 13px;
+            color: #2d3748;
+            border-bottom: 1px solid #e2e8f0;
         }
         
-        .month-0 { background: linear-gradient(135deg, #ff6b6b, #ee5a24); }
-        .month-1 { background: linear-gradient(135deg, #4ecdc4, #44a08d); }
-        .month-2 { background: linear-gradient(135deg, #45b7d1, #96c93d); }
-        .month-3 { background: linear-gradient(135deg, #f9ca24, #f0932b); }
-        .month-4 { background: linear-gradient(135deg, #6c5ce7, #a29bfe); }
-        .month-5 { background: linear-gradient(135deg, #fd79a8, #fdcb6e); }
-        .month-6 { background: linear-gradient(135deg, #00b894, #00cec9); }
-        .month-7 { background: linear-gradient(135deg, #e84393, #fd79a8); }
-        .month-8 { background: linear-gradient(135deg, #0984e3, #74b9ff); }
-        .month-9 { background: linear-gradient(135deg, #e17055, #fab1a0); }
-        .month-10 { background: linear-gradient(135deg, #6c5ce7, #fd79a8); }
-        .month-11 { background: linear-gradient(135deg, #00b894, #55a3ff); }
+        .month-0 { background: linear-gradient(135deg, #fef2f2 0%, #fed7d7 100%); }
+        .month-1 { background: linear-gradient(135deg, #f0fff4 0%, #c6f6d5 100%); }
+        .month-2 { background: linear-gradient(135deg, #ebf8ff 0%, #bee3f8 100%); }
+        .month-3 { background: linear-gradient(135deg, #fffbeb 0%, #faf089 100%); }
+        .month-4 { background: linear-gradient(135deg, #faf5ff 0%, #e9d8fd 100%); }
+        .month-5 { background: linear-gradient(135deg, #fff5f5 0%, #fed7e2 100%); }
+        .month-6 { background: linear-gradient(135deg, #f0fdfa 0%, #a7f3d0 100%); }
+        .month-7 { background: linear-gradient(135deg, #eff6ff 0%, #bfdbfe 100%); }
+        .month-8 { background: linear-gradient(135deg, #fefce8 0%, #fde68a 100%); }
+        .month-9 { background: linear-gradient(135deg, #f5f3ff 0%, #ddd6fe 100%); }
+        .month-10 { background: linear-gradient(135deg, #ecfdf5 0%, #bbf7d0 100%); }
+        .month-11 { background: linear-gradient(135deg, #fdf2f8 0%, #fbcfe8 100%); }
         
         .calendar {
-            padding: 15px;
+            padding: 8px;
         }
         
         .weekdays {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            gap: 2px;
-            margin-bottom: 10px;
+            gap: 1px;
+            margin-bottom: 4px;
         }
         
         .weekday {
             text-align: center;
-            font-weight: bold;
-            color: #666;
-            padding: 8px 4px;
-            font-size: 12px;
+            font-weight: 500;
+            color: #718096;
+            padding: 4px 2px;
+            font-size: 10px;
         }
         
         .days {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            gap: 2px;
+            gap: 1px;
         }
         
         .day {
             text-align: center;
-            padding: 8px 4px;
-            font-size: 14px;
-            min-height: 30px;
+            padding: 4px 2px;
+            font-size: 11px;
+            min-height: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 6px;
-            transition: all 0.2s ease;
-            cursor: pointer;
+            border-radius: 2px;
+            transition: background-color 0.1s ease;
         }
         
         .day:hover {
-            background-color: #e8f4fd;
-            transform: scale(1.05);
+            background-color: #f1f5f9;
         }
         
         .day.other-month {
-            color: #ccc;
+            color: #cbd5e0;
         }
         
         .day.current-month {
-            color: #333;
-            background-color: #f8f9fa;
+            color: #2d3748;
         }
         
         .day.today {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #3182ce;
             color: white;
-            font-weight: bold;
-            box-shadow: 0 2px 10px rgba(102, 126, 234, 0.4);
+            font-weight: 600;
         }
         
         .day.holiday {
-            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-            color: white;
-            font-weight: bold;
+            background: #fed7d7;
+            color: #c53030;
+            font-weight: 500;
+        }
+        
+        .day.saturday {
+            color: #3182ce;
+        }
+        
+        .day.sunday {
+            color: #e53e3e;
         }
         
         .legend {
             display: flex;
             justify-content: center;
-            gap: 30px;
-            margin-top: 30px;
+            gap: 16px;
+            margin-top: 16px;
             flex-wrap: wrap;
         }
         
         .legend-item {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 6px;
+            font-size: 12px;
+            color: #4a5568;
         }
         
         .legend-color {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
         }
         
         .legend-today {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #3182ce;
         }
         
         .legend-holiday {
-            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            background: #fed7d7;
         }
     </style>
 </head>
@@ -233,11 +245,11 @@
         let currentStartMonth = new Date();
         
         const monthNames = [
-            '1月', '2月', '3月', '4月', '5月', '6月',
-            '7月', '8月', '9月', '10月', '11月', '12月'
+            'January', 'February', 'March', 'April', 'May', 'June',
+            'July', 'August', 'September', 'October', 'November', 'December'
         ];
         
-        const weekdays = ['日', '月', '火', '水', '木', '金', '土'];
+        const weekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
         
         // タイの祝日 (2025年)
         const thaiHolidays2025 = {
@@ -314,18 +326,25 @@
             return date.toDateString() === today.toDateString();
         }
         
+        function isCurrentMonth(date, currentYear, currentMonth) {
+            return date.getFullYear() === currentYear && date.getMonth() === currentMonth;
+        }
+        
         function createMonthCalendar(year, month) {
             const firstDay = new Date(year, month, 1);
             const lastDay = new Date(year, month + 1, 0);
             const startDate = new Date(firstDay);
-            startDate.setDate(startDate.getDate() - firstDay.getDay());
+            // 月曜始まりに調整
+            const dayOfWeek = firstDay.getDay();
+            const mondayOffset = dayOfWeek === 0 ? 6 : dayOfWeek - 1;
+            startDate.setDate(startDate.getDate() - mondayOffset);
             
             const monthContainer = document.createElement('div');
             monthContainer.className = 'month-container';
             
             const monthHeader = document.createElement('div');
             monthHeader.className = `month-header month-${month}`;
-            monthHeader.textContent = `${year}年 ${monthNames[month]}`;
+            monthHeader.textContent = `${monthNames[month]} ${year}`;
             
             const calendar = document.createElement('div');
             calendar.className = 'calendar';
@@ -353,7 +372,8 @@
                     dayDiv.classList.add('other-month');
                 }
                 
-                if (isToday(currentDate)) {
+                // 今日のマークは現在の月のみに適用
+                if (isToday(currentDate) && isCurrentMonth(currentDate, year, month)) {
                     dayDiv.classList.add('today');
                 }
                 
@@ -361,6 +381,14 @@
                     dayDiv.classList.add('holiday');
                     const holidayName = getAllHolidays()[currentDate.toISOString().split('T')[0]];
                     dayDiv.title = holidayName;
+                }
+                
+                // 土曜日と日曜日の色分け（月曜始まりなので土曜は5、日曜は6）
+                const dayOfWeek = (currentDate.getDay() + 6) % 7; // 月曜を0にする
+                if (dayOfWeek === 5) { // 土曜日
+                    dayDiv.classList.add('saturday');
+                } else if (dayOfWeek === 6) { // 日曜日
+                    dayDiv.classList.add('sunday');
                 }
                 
                 dayDiv.textContent = currentDate.getDate();
@@ -386,7 +414,7 @@
             const startYear = currentStartMonth.getFullYear();
             const startMonthNum = currentStartMonth.getMonth();
             
-            yearTitle.textContent = `${startYear}年カレンダー`;
+            yearTitle.textContent = `${startYear} Calendar`;
             
             for (let i = 0; i < 12; i++) {
                 const monthDate = new Date(startYear, startMonthNum + i, 1);
