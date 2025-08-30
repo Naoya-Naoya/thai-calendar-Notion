@@ -166,8 +166,8 @@
         }
         
         .day.today {
-            background: #3182ce;
-            color: white;
+            background: #3182ce !important;
+            color: white !important;
             font-weight: 600;
         }
         
@@ -251,79 +251,108 @@
         
         const weekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
         
-        // タイの祝日 (2025年)
-        const thaiHolidays2025 = {
-            '2025-01-01': '元旦',
-            '2025-01-13': 'マカブーチャ祭',
-            '2025-04-06': 'チャクリー記念日',
-            '2025-04-13': 'ソンクラン（タイ正月）',
-            '2025-04-14': 'ソンクラン（タイ正月）',
-            '2025-04-15': 'ソンクラン（タイ正月）',
-            '2025-05-01': 'メーデー',
-            '2025-05-05': '国王戴冠記念日',
-            '2025-05-12': 'ウィサーカブーチャ祭',
-            '2025-07-28': '国王誕生日',
-            '2025-08-12': '王妃誕生日',
-            '2025-10-13': 'プミポン国王記念日',
-            '2025-10-23': 'チュラロンコーン記念日',
-            '2025-12-05': 'プミポン国王誕生日',
-            '2025-12-10': '憲法記念日',
-            '2025-12-31': '大晦日'
-        };
-        
-        const thaiHolidays2024 = {
+        // タイの祝日（静的データ）
+        const thaiHolidays = {
+            // 2024年
             '2024-01-01': '元旦',
+            '2024-01-02': '元旦休日',
+            '2024-02-10': '中国正月',
             '2024-02-24': 'マカブーチャ祭',
             '2024-04-06': 'チャクリー記念日',
             '2024-04-13': 'ソンクラン（タイ正月）',
             '2024-04-14': 'ソンクラン（タイ正月）',
             '2024-04-15': 'ソンクラン（タイ正月）',
             '2024-05-01': 'メーデー',
-            '2024-05-05': '国王戴冠記念日',
+            '2024-05-04': '国王戴冠記念日',
+            '2024-05-06': '国王戴冠記念日（振替休日）',
             '2024-05-22': 'ウィサーカブーチャ祭',
+            '2024-06-03': '王妃スティダ誕生日',
             '2024-07-20': 'アーサーラハ・ブーチャ祭',
+            '2024-07-21': '三宝節（仏教の入安居）',
+            '2024-07-22': 'ブリッジホリデー',
             '2024-07-28': '国王誕生日',
-            '2024-08-12': '王妃誕生日',
+            '2024-07-29': 'ブリッジホリデー',
+            '2024-08-12': 'シリキット王太后誕生日',
             '2024-10-13': 'プミポン国王記念日',
+            '2024-10-14': 'ブリッジホリデー',
             '2024-10-23': 'チュラロンコーン記念日',
-            '2024-12-05': 'プミポン国王誕生日',
+            '2024-12-05': 'プミポン国王誕生日/父の日',
             '2024-12-10': '憲法記念日',
-            '2024-12-31': '大晦日'
-        };
-        
-        const thaiHolidays2026 = {
+            '2024-12-30': 'ブリッジホリデー',
+            '2024-12-31': '大晦日',
+            
+            // 2025年
+            '2025-01-01': '元旦',
+            '2025-01-02': '元旦休日',
+            '2025-01-29': '中国正月',
+            '2025-02-12': 'マカブーチャ祭',
+            '2025-04-06': 'チャクリー記念日',
+            '2025-04-07': 'チャクリー記念日（振替休日）',
+            '2025-04-13': 'ソンクラン（タイ正月）',
+            '2025-04-14': 'ソンクラン（タイ正月）',
+            '2025-04-15': 'ソンクラン（タイ正月）',
+            '2025-05-01': 'メーデー',
+            '2025-05-04': '国王戴冠記念日',
+            '2025-05-05': '国王戴冠記念日（振替休日）',
+            '2025-05-11': 'ウィサーカブーチャ祭',
+            '2025-05-12': 'ウィサーカブーチャ祭（振替休日）',
+            '2025-06-02': 'ブリッジホリデー',
+            '2025-06-03': '王妃スティダ誕生日',
+            '2025-07-10': 'アーサーラハ・ブーチャ祭',
+            '2025-07-11': '三宝節（仏教の入安居）',
+            '2025-07-28': '国王誕生日',
+            '2025-08-11': 'ブリッジホリデー',
+            '2025-08-12': 'シリキット王太后誕生日',
+            '2025-10-13': 'プミポン国王記念日',
+            '2025-10-23': 'チュラロンコーン記念日',
+            '2025-12-05': 'プミポン国王誕生日/父の日',
+            '2025-12-10': '憲法記念日',
+            '2025-12-31': '大晦日',
+            
+            // 2026年
             '2026-01-01': '元旦',
+            '2026-01-02': '元旦休日',
+            '2026-02-17': '中国正月',
             '2026-03-03': 'マカブーチャ祭',
             '2026-04-06': 'チャクリー記念日',
             '2026-04-13': 'ソンクラン（タイ正月）',
             '2026-04-14': 'ソンクラン（タイ正月）',
             '2026-04-15': 'ソンクラン（タイ正月）',
             '2026-05-01': 'メーデー',
-            '2026-05-05': '国王戴冠記念日',
+            '2026-05-04': '国王戴冠記念日',
             '2026-05-31': 'ウィサーカブーチャ祭',
+            '2026-06-01': 'ウィサーカブーチャ祭（振替休日）',
+            '2026-06-03': '王妃スティダ誕生日',
             '2026-07-28': '国王誕生日',
-            '2026-08-09': 'アーサーラハ・ブーチャ祭',
-            '2026-08-12': '王妃誕生日',
+            '2026-07-30': 'アーサーラハ・ブーチャ祭',
+            '2026-07-31': '三宝節（仏教の入安居）',
+            '2026-08-12': 'シリキット王太后誕生日',
             '2026-10-13': 'プミポン国王記念日',
             '2026-10-23': 'チュラロンコーン記念日',
-            '2026-12-05': 'プミポン国王誕生日',
+            '2026-12-05': 'プミポン国王誕生日/父の日',
             '2026-12-10': '憲法記念日',
             '2026-12-31': '大晦日'
         };
         
-        function getAllHolidays() {
-            return {...thaiHolidays2024, ...thaiHolidays2025, ...thaiHolidays2026};
+        // タイの現地時間での日付文字列を取得
+        function getThaiDateString(date) {
+            const thaiDate = new Date(date.getTime() + (7 * 60 * 60 * 1000)); // UTC+7に変換
+            const year = thaiDate.getUTCFullYear();
+            const month = String(thaiDate.getUTCMonth() + 1).padStart(2, '0');
+            const day = String(thaiDate.getUTCDate()).padStart(2, '0');
+            return year + '-' + month + '-' + day;
         }
         
         function isHoliday(date) {
-            const dateStr = date.toISOString().split('T')[0];
-            const holidays = getAllHolidays();
-            return holidays[dateStr] || false;
+            const dateStr = getThaiDateString(date);
+            return thaiHolidays[dateStr] || false;
         }
         
         function isToday(date) {
-            const today = new Date();
-            return date.toDateString() === today.toDateString();
+            const now = new Date();
+            const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+            const compareDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+            return today.getTime() === compareDate.getTime();
         }
         
         function isCurrentMonth(date, currentYear, currentMonth) {
@@ -343,20 +372,20 @@
             monthContainer.className = 'month-container';
             
             const monthHeader = document.createElement('div');
-            monthHeader.className = `month-header month-${month}`;
-            monthHeader.textContent = `${monthNames[month]} ${year}`;
+            monthHeader.className = 'month-header month-' + month;
+            monthHeader.textContent = monthNames[month] + ' ' + year;
             
             const calendar = document.createElement('div');
             calendar.className = 'calendar';
             
             const weekdaysDiv = document.createElement('div');
             weekdaysDiv.className = 'weekdays';
-            weekdays.forEach(day => {
+            for (let i = 0; i < weekdays.length; i++) {
                 const weekdayDiv = document.createElement('div');
                 weekdayDiv.className = 'weekday';
-                weekdayDiv.textContent = day;
+                weekdayDiv.textContent = weekdays[i];
                 weekdaysDiv.appendChild(weekdayDiv);
-            });
+            }
             
             const daysDiv = document.createElement('div');
             daysDiv.className = 'days';
@@ -379,16 +408,20 @@
                 
                 if (isHoliday(currentDate)) {
                     dayDiv.classList.add('holiday');
-                    const holidayName = getAllHolidays()[currentDate.toISOString().split('T')[0]];
-                    dayDiv.title = holidayName;
+                    const holidayName = thaiHolidays[getThaiDateString(currentDate)];
+                    if (holidayName) {
+                        dayDiv.title = holidayName;
+                    }
                 }
                 
-                // 土曜日と日曜日の色分け（月曜始まりなので土曜は5、日曜は6）
-                const dayOfWeek = (currentDate.getDay() + 6) % 7; // 月曜を0にする
-                if (dayOfWeek === 5) { // 土曜日
-                    dayDiv.classList.add('saturday');
-                } else if (dayOfWeek === 6) { // 日曜日
-                    dayDiv.classList.add('sunday');
+                // 土曜日と日曜日の色分け（現在の月のみに適用）
+                if (currentDate.getMonth() === month) {
+                    const dayOfWeek = (currentDate.getDay() + 6) % 7; // 月曜を0にする
+                    if (dayOfWeek === 5) { // 土曜日
+                        dayDiv.classList.add('saturday');
+                    } else if (dayOfWeek === 6) { // 日曜日
+                        dayDiv.classList.add('sunday');
+                    }
                 }
                 
                 dayDiv.textContent = currentDate.getDate();
@@ -414,7 +447,7 @@
             const startYear = currentStartMonth.getFullYear();
             const startMonthNum = currentStartMonth.getMonth();
             
-            yearTitle.textContent = `${startYear} Calendar`;
+            yearTitle.textContent = startYear + ' Calendar';
             
             for (let i = 0; i < 12; i++) {
                 const monthDate = new Date(startYear, startMonthNum + i, 1);
